@@ -13,3 +13,7 @@
 #   - prometheus-client (metrics export)
 #   - joblib (model serialization)
 #   - pytest (testing framework)
+
+# Phase 1: Data generation and ingestion
+pandas>=2.0.0
+Faker>=18.0.0

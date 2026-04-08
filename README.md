@@ -58,17 +58,27 @@ ci-cd-failure-predictor/
 
 ## Status
 
-**Phase 0: Project Skeleton** - Complete. Structure and placeholders only. No implementation logic yet.
+**Phase 1: Synthetic Data Generation** - Complete. Generates 1000 realistic CI/CD build records with learnable failure patterns.
+
+### Quick Start
+
+```bash
+pip install -r requirements.txt
+python ingestion/fetch_logs.py
+```
+
+This generates `data/raw/build_logs.csv` with 1000 records (16 columns, ~25% failure rate).
 
 ---
 
-## Future Phases
+## Phases
 
-1. **Phase 1** - Synthetic data generation and log ingestion
-2. **Phase 2** - Feature engineering pipeline
-3. **Phase 3** - Model training, evaluation, and prediction
-4. **Phase 4** - REST API for serving predictions
-5. **Phase 5** - Docker containerization
-6. **Phase 6** - Kubernetes deployment
-7. **Phase 7** - CI/CD pipeline integration (GitHub Actions)
-8. **Phase 8** - Monitoring, alerting, and model retraining
+1. **Phase 0** - Project skeleton — Done
+2. **Phase 1** - Synthetic data generation and log ingestion — Done
+3. **Phase 2** - Feature engineering pipeline
+4. **Phase 3** - Model training, evaluation, and prediction
+5. **Phase 4** - REST API for serving predictions
+6. **Phase 5** - Docker containerization
+7. **Phase 6** - Kubernetes deployment
+8. **Phase 7** - CI/CD pipeline integration (GitHub Actions)
+9. **Phase 8** - Monitoring, alerting, and model retraining
