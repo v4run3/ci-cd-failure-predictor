@@ -1,0 +1,12 @@
+# service.yaml - Kubernetes Service Configuration
+#
+# Purpose:
+#   Define the Kubernetes Service resource to expose the prediction
+#   API within the cluster or externally via a LoadBalancer.
+#
+# Future Implementation:
+#   - Configure service type (ClusterIP / LoadBalancer)
+#   - Map the API container port
+#   - Define selector labels to route traffic to API pods
+
+# TODO: Implement Kubernetes service spec in a later phase

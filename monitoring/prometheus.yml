@@ -1,0 +1,14 @@
+# prometheus.yml - Prometheus Monitoring Configuration
+#
+# Purpose:
+#   Configure Prometheus to scrape metrics from the prediction
+#   API service for monitoring model performance, API latency,
+#   and system health.
+#
+# Future Implementation:
+#   - Define global scrape interval
+#   - Configure scrape targets (API service endpoint)
+#   - Set up alerting rules for model drift and service degradation
+#   - Define metric relabeling if needed
+
+# TODO: Implement Prometheus configuration in a later phase

@@ -1,0 +1,15 @@
+# requirements.txt - Project Dependencies
+#
+# Purpose:
+#   List all Python package dependencies required for the
+#   CI/CD Failure Predictor project.
+#
+# Future additions:
+#   - pandas (data manipulation)
+#   - scikit-learn (model training and evaluation)
+#   - fastapi (API framework)
+#   - uvicorn (ASGI server)
+#   - requests (HTTP client for log fetching)
+#   - prometheus-client (metrics export)
+#   - joblib (model serialization)
+#   - pytest (testing framework)

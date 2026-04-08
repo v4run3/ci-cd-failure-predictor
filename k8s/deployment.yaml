@@ -1,0 +1,15 @@
+# deployment.yaml - Kubernetes Deployment Configuration
+#
+# Purpose:
+#   Define the Kubernetes Deployment resource for the prediction
+#   API service, including replica count, container spec, and
+#   resource limits.
+#
+# Future Implementation:
+#   - Configure container image and tag
+#   - Set replica count for high availability
+#   - Define resource requests and limits
+#   - Configure health check probes (liveness, readiness)
+#   - Set environment variables for model path and config
+
+# TODO: Implement Kubernetes deployment spec in a later phase

@@ -1,0 +1,13 @@
+# ci-cd/placeholder.txt
+#
+# Purpose:
+#   Reserved directory for CI/CD pipeline configuration files
+#   (e.g., GitHub Actions workflows).
+#
+# Future Implementation:
+#   - GitHub Actions workflow for automated testing
+#   - GitHub Actions workflow for model retraining
+#   - GitHub Actions workflow for Docker build and push
+#   - GitHub Actions workflow for Kubernetes deployment
+
+# TODO: Add CI/CD workflow files in a later phase
