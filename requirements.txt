@@ -17,3 +17,7 @@
 # Phase 1: Data generation and ingestion
 pandas>=2.0.0
 Faker>=18.0.0
+
+# Phase 3: Model training, evaluation, and prediction
+scikit-learn>=1.3.0
+joblib>=1.3.0

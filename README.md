@@ -58,7 +58,7 @@ ci-cd-failure-predictor/
 
 ## Status
 
-**Phase 2: Feature Engineering** - Complete. Transforms raw logs into 21 numeric ML features.
+**Phase 3: Model Training** - Complete. Trains Random Forest & Logistic Regression, selects best model (F1-score), saves to disk.
 
 ### Quick Start
 
@@ -66,6 +66,9 @@ ci-cd-failure-predictor/
 pip install -r requirements.txt
 python ingestion/fetch_logs.py       # generates data/raw/build_logs.csv
 python features/build_features.py    # generates data/processed/features.csv
+python model/train.py                # trains models, saves best to model/saved_model.pkl
+python model/evaluate.py             # prints accuracy, F1, confusion matrix, etc.
+python model/predict.py              # demo prediction on sample records
 ```
 
 ---
@@ -75,7 +78,7 @@ python features/build_features.py    # generates data/processed/features.csv
 1. **Phase 0** - Project skeleton — Done
 2. **Phase 1** - Synthetic data generation and log ingestion — Done
 3. **Phase 2** - Feature engineering pipeline — Done
-4. **Phase 3** - Model training, evaluation, and prediction
+4. **Phase 3** - Model training, evaluation, and prediction — Done
 5. **Phase 4** - REST API for serving predictions
 6. **Phase 5** - Docker containerization
 7. **Phase 6** - Kubernetes deployment

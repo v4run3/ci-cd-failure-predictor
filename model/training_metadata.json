@@ -1,0 +1,31 @@
+{
+  "model_name": "RandomForest",
+  "feature_names": [
+    "num_files_changed",
+    "lines_added",
+    "lines_deleted",
+    "test_count",
+    "test_pass_count",
+    "test_fail_count",
+    "build_duration_seconds",
+    "hour",
+    "day_of_week",
+    "is_late_night",
+    "is_weekend",
+    "total_lines_changed",
+    "lines_per_file",
+    "test_fail_ratio",
+    "branch_is_hotfix",
+    "branch_is_bugfix",
+    "branch_is_feature",
+    "branch_is_release",
+    "trigger_is_push",
+    "trigger_is_schedule"
+  ],
+  "train_size": 800,
+  "test_size": 200,
+  "best_f1_score": 1.0,
+  "test_split_ratio": 0.2,
+  "random_state": 42,
+  "trained_at": "2026-04-11 15:40:43"
+}
