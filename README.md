@@ -58,16 +58,15 @@ ci-cd-failure-predictor/
 
 ## Status
 
-**Phase 1: Synthetic Data Generation** - Complete. Generates 1000 realistic CI/CD build records with learnable failure patterns.
+**Phase 2: Feature Engineering** - Complete. Transforms raw logs into 21 numeric ML features.
 
 ### Quick Start
 
 ```bash
 pip install -r requirements.txt
-python ingestion/fetch_logs.py
+python ingestion/fetch_logs.py       # generates data/raw/build_logs.csv
+python features/build_features.py    # generates data/processed/features.csv
 ```
-
-This generates `data/raw/build_logs.csv` with 1000 records (16 columns, ~25% failure rate).
 
 ---
 
@@ -75,7 +74,7 @@ This generates `data/raw/build_logs.csv` with 1000 records (16 columns, ~25% fai
 
 1. **Phase 0** - Project skeleton — Done
 2. **Phase 1** - Synthetic data generation and log ingestion — Done
-3. **Phase 2** - Feature engineering pipeline
+3. **Phase 2** - Feature engineering pipeline — Done
 4. **Phase 3** - Model training, evaluation, and prediction
 5. **Phase 4** - REST API for serving predictions
 6. **Phase 5** - Docker containerization
