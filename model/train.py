@@ -170,8 +170,17 @@ def save_metadata(
 # ---------------------------------------------------------------------------
 
 
-def train_pipeline(data_path: str = FEATURES_PATH) -> tuple[object, str]:
-    """Full training pipeline: load → split → train → compare → save.
+def train_pipeline(
+    data_path: str = FEATURES_PATH,
+    model_path: str = MODEL_PATH,
+    metadata_path: str = METADATA_PATH,
+) -> tuple[object, str]:
+    """Full training pipeline: load -> split -> train -> compare -> save.
+
+    Args:
+        data_path: Path to features.csv.
+        model_path: Where to save the trained model .pkl.
+        metadata_path: Where to save training_metadata.json.
 
     Returns:
         Tuple of (best_model, best_model_name).
@@ -197,17 +206,18 @@ def train_pipeline(data_path: str = FEATURES_PATH) -> tuple[object, str]:
     best_name, best_model, best_f1 = select_best_model(models, X_test, y_test)
 
     # Save
-    model_path = save_model(best_model)
+    saved_model_path = save_model(best_model, path=model_path)
     meta_path = save_metadata(
         model_name=best_name,
         feature_names=list(X.columns),
         train_size=len(X_train),
         test_size=len(X_test),
         f1=best_f1,
+        path=metadata_path,
     )
 
     print(f"\nBest model: {best_name} (F1={best_f1:.4f})")
-    print(f"Model saved  -> {model_path}")
+    print(f"Model saved  -> {saved_model_path}")
     print(f"Metadata saved -> {meta_path}")
 
     return best_model, best_name
