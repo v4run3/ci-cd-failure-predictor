@@ -1,12 +1,14 @@
 import { useState } from "react";
 import PredictionForm from "../components/PredictionForm";
 import PredictionResult from "../components/PredictionResult";
+import ScenarioSimulator from "../components/ScenarioSimulator";
 import { predict } from "../api";
 
 function Predict({ onPrediction }) {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [lastPayload, setLastPayload] = useState(null);
 
   const handleSubmit = async (payload, branchType, triggerType) => {
     setLoading(true);
@@ -14,6 +16,7 @@ function Predict({ onPrediction }) {
     try {
       const res = await predict(payload);
       setResult(res);
+      setLastPayload(payload);
 
       // Save to history
       onPrediction({
@@ -40,9 +43,16 @@ function Predict({ onPrediction }) {
 
       <div className="predict-layout">
         <PredictionForm onSubmit={handleSubmit} loading={loading} />
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <PredictionResult result={result} />
           {error && <div className="error-msg">{error}</div>}
+          
+          {lastPayload && result && !error && (
+            <ScenarioSimulator 
+              originalPayload={lastPayload} 
+              originalResult={result} 
+            />
+          )}
         </div>
       </div>
     </div>

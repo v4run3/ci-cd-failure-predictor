@@ -27,5 +27,5 @@
   "best_f1_score": 1.0,
   "test_split_ratio": 0.2,
   "random_state": 42,
-  "trained_at": "2026-04-12 17:33:58"
+  "trained_at": "2026-04-14 15:56:11"
 }
