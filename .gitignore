@@ -37,3 +37,11 @@ build/
 
 # Environment variables
 .env
+
+# Frontend build artifacts
+frontend/node_modules/
+frontend/dist/
+
+# Model metadata backup files
+*.pkl.bak
+*.json.bak

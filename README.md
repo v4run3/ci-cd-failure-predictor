@@ -49,6 +49,11 @@ ci-cd-failure-predictor/
 ├── notebooks/             # Exploratory analysis
 │   └── exploration.ipynb  # Data exploration notebook
 │
+├── frontend/              # React dashboard (Vite)
+│   ├── src/pages/         # Dashboard, Predict, History pages
+│   ├── src/components/    # Reusable UI components
+│   └── package.json       # Frontend dependencies
+│
 ├── requirements.txt       # Python dependencies
 ├── .gitignore             # Git ignore rules
 └── README.md              # Project documentation (this file)
@@ -58,11 +63,12 @@ ci-cd-failure-predictor/
 
 ## Status
 
-**Phase 8 (Person A):** Model Retraining — Complete. Full end-to-end retrain pipeline with safe rollback.
+**Frontend:** React Dashboard — Complete. Full dashboard with predict form, risk gauge, charts, dark mode.
 
 ### Quick Start
 
 ```bash
+# Backend
 pip install -r requirements.txt
 python ingestion/fetch_logs.py       # generates data/raw/build_logs.csv
 python features/build_features.py    # generates data/processed/features.csv
@@ -70,6 +76,12 @@ python model/train.py                # trains models, saves best to model/saved_
 python model/evaluate.py             # prints accuracy, F1, confusion matrix, etc.
 python model/predict.py              # demo prediction on sample records
 python scripts/retrain.py            # full retrain: new data → features → train → evaluate → compare
+uvicorn api.main:app --port 8000     # start API server
+
+# Frontend (in a separate terminal)
+cd frontend
+npm install
+npm run dev                          # opens at http://localhost:5173
 ```
 
 ---
