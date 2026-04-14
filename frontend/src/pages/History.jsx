@@ -47,7 +47,10 @@ function History({ predictions }) {
                     background: "var(--bg-secondary)",
                     border: "1px solid var(--border)",
                     borderRadius: "8px",
+                    color: "var(--text-primary)",
                   }}
+                  labelStyle={{ color: "var(--text-primary)" }}
+                  itemStyle={{ color: "var(--text-primary)" }}
                 />
                 <ReferenceLine y={0.35} stroke="var(--warning)" strokeDasharray="5 5" label="" />
                 <ReferenceLine y={0.65} stroke="var(--danger)" strokeDasharray="5 5" label="" />
