@@ -1,15 +1,47 @@
-# deployment.yaml - Kubernetes Deployment Configuration
-#
-# Purpose:
-#   Define the Kubernetes Deployment resource for the prediction
-#   API service, including replica count, container spec, and
-#   resource limits.
-#
-# Future Implementation:
-#   - Configure container image and tag
-#   - Set replica count for high availability
-#   - Define resource requests and limits
-#   - Configure health check probes (liveness, readiness)
-#   - Set environment variables for model path and config
-
-# TODO: Implement Kubernetes deployment spec in a later phase
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-failure-predictor
+  labels:
+    app: cicd-failure-predictor
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cicd-failure-predictor
+  template:
+    metadata:
+      labels:
+        app: cicd-failure-predictor
+    spec:
+      containers:
+        - name: api
+          image: v4run3/ci-cd-failure-predictor:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: PORT
+              value: "8000"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 2

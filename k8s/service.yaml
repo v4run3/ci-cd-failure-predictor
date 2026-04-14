@@ -1,12 +1,15 @@
-# service.yaml - Kubernetes Service Configuration
-#
-# Purpose:
-#   Define the Kubernetes Service resource to expose the prediction
-#   API within the cluster or externally via a LoadBalancer.
-#
-# Future Implementation:
-#   - Configure service type (ClusterIP / LoadBalancer)
-#   - Map the API container port
-#   - Define selector labels to route traffic to API pods
-
-# TODO: Implement Kubernetes service spec in a later phase
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicd-failure-predictor
+  labels:
+    app: cicd-failure-predictor
+spec:
+  type: NodePort
+  selector:
+    app: cicd-failure-predictor
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+      nodePort: 30080
