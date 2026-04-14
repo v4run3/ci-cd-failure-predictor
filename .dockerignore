@@ -1,0 +1,55 @@
+# .dockerignore — CI/CD Failure Predictor
+# Keeps the Docker build context small and excludes secrets / dev artifacts.
+
+# Version control
+.git/
+.gitignore
+
+# Python cache / bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+
+# Test suite (not needed at runtime)
+tests/
+
+# Notebooks & exploration
+notebooks/
+
+# Frontend (not served by this container)
+frontend/
+
+# IDE / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# CI/CD config (not needed inside container)
+ci-cd/
+
+# Kubernetes manifests (not needed inside container)
+k8s/
+
+# Docker files themselves (avoid recursive include)
+docker/
+
+# Environment secrets
+.env
+*.env
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# README / docs
+README.md
+*.md
