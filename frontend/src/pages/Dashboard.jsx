@@ -78,7 +78,10 @@ function Dashboard({ predictions }) {
                 background: "var(--bg-secondary)",
                 border: "1px solid var(--border)",
                 borderRadius: "8px",
+                color: "var(--text-primary)",
               }}
+              labelStyle={{ color: "var(--text-primary)" }}
+              itemStyle={{ color: "var(--text-primary)" }}
             />
             <Bar dataKey="importance" radius={[0, 4, 4, 0]}>
               {FEATURE_IMPORTANCE.map((_, i) => (
