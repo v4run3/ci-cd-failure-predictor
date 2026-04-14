@@ -58,7 +58,7 @@ ci-cd-failure-predictor/
 
 ## Status
 
-**Phase 3: Model Training** - Complete. Trains Random Forest & Logistic Regression, selects best model (F1-score), saves to disk.
+**Phase 8 (Person A):** Model Retraining — Complete. Full end-to-end retrain pipeline with safe rollback.
 
 ### Quick Start
 
@@ -69,6 +69,7 @@ python features/build_features.py    # generates data/processed/features.csv
 python model/train.py                # trains models, saves best to model/saved_model.pkl
 python model/evaluate.py             # prints accuracy, F1, confusion matrix, etc.
 python model/predict.py              # demo prediction on sample records
+python scripts/retrain.py            # full retrain: new data → features → train → evaluate → compare
 ```
 
 ---
@@ -83,4 +84,4 @@ python model/predict.py              # demo prediction on sample records
 6. **Phase 5** - Docker containerization
 7. **Phase 6** - Kubernetes deployment
 8. **Phase 7** - CI/CD pipeline integration (GitHub Actions)
-9. **Phase 8** - Monitoring, alerting, and model retraining
+9. **Phase 8** - Monitoring, alerting, and model retraining — Done (retraining script)
