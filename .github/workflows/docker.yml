@@ -53,5 +53,5 @@ jobs:
         file: docker/Dockerfile
         push: true
         tags: |
-          ${{ secrets.DOCKERHUB_USERNAME || 'v4run3' }}/ci-cd-failure-predictor:latest
-          ${{ secrets.DOCKERHUB_USERNAME || 'v4run3' }}/ci-cd-failure-predictor:${{ github.sha }}
+          v4run3/ci-cd-failure-predictor:latest
+          v4run3/ci-cd-failure-predictor:${{ github.sha }}
