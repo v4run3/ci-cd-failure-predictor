@@ -45,3 +45,7 @@ frontend/dist/
 # Model metadata backup files
 *.pkl.bak
 *.json.bak
+
+# DVC local cache (data + models live in .dvc/cache, tracked via .dvc pointer files)
+/.dvc/cache
+/.dvc/tmp

@@ -63,7 +63,7 @@ ci-cd-failure-predictor/
 
 ## Status
 
-**All Phases Complete.** Full MLOps pipeline with React dashboard, K8s deployment, CI/CD, and Prometheus monitoring.
+**All Phases Complete.** Full MLOps pipeline with DVC, React dashboard, K8s deployment, CI/CD, and Prometheus monitoring.
 
 ### Quick Start
 
@@ -83,6 +83,18 @@ cd frontend
 npm install
 npm run dev                          # opens at http://localhost:5173
 ```
+
+### DVC Pipeline (data & model versioning)
+
+```bash
+dvc repro              # run the full pipeline (ingest → features → train → evaluate)
+dvc dag                # visualize pipeline dependency graph
+dvc metrics show       # compare model metrics
+dvc push               # push data + model to the configured remote
+dvc pull               # pull data + model from the remote
+```
+
+The pipeline is defined in `dvc.yaml` with four stages. Hyperparameters live in `params.yaml` — changing any value triggers a re-run of the affected stages. Evaluation metrics are written to `metrics.json`.
 
 ---
 

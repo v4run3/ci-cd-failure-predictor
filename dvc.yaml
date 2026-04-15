@@ -1,0 +1,43 @@
+stages:
+  ingest:
+    cmd: python ingestion/fetch_logs.py
+    deps:
+      - ingestion/fetch_logs.py
+    params:
+      - data_generation
+    outs:
+      - data/raw/build_logs.csv
+
+  features:
+    cmd: python features/build_features.py
+    deps:
+      - features/build_features.py
+      - data/raw/build_logs.csv
+    params:
+      - features
+    outs:
+      - data/processed/features.csv
+
+  train:
+    cmd: python model/train.py
+    deps:
+      - model/train.py
+      - data/processed/features.csv
+    params:
+      - training
+    outs:
+      - model/saved_model.pkl
+    metrics:
+      - model/training_metadata.json:
+          cache: false
+
+  evaluate:
+    cmd: python scripts/dvc_metrics.py
+    deps:
+      - scripts/dvc_metrics.py
+      - model/evaluate.py
+      - model/saved_model.pkl
+      - data/processed/features.csv
+    metrics:
+      - metrics.json:
+          cache: false

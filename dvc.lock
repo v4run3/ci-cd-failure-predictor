@@ -1,0 +1,101 @@
+schema: '2.0'
+stages:
+  ingest:
+    cmd: python ingestion/fetch_logs.py
+    deps:
+    - path: ingestion/fetch_logs.py
+      hash: md5
+      md5: a3651344b940fde8b430c6ffa7568147
+      size: 8484
+    params:
+      params.yaml:
+        data_generation:
+          num_records: 1000
+          random_seed: 42
+          failure_rate_target: 0.25
+    outs:
+    - path: data/raw/build_logs.csv
+      hash: md5
+      md5: ff27212b7cd8d8c202444560d4838147
+      size: 207471
+  features:
+    cmd: python features/build_features.py
+    deps:
+    - path: data/raw/build_logs.csv
+      hash: md5
+      md5: ff27212b7cd8d8c202444560d4838147
+      size: 207471
+    - path: features/build_features.py
+      hash: md5
+      md5: aef77cee6a182416511bb2e27aea9230
+      size: 5282
+    params:
+      params.yaml:
+        features:
+          target_column: failed
+          columns_to_drop:
+          - build_id
+          - commit_hash
+          - author
+          - log_snippet
+          - project_name
+    outs:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 02fb1907169cb516948dc315db2f3c24
+      size: 60364
+  train:
+    cmd: python model/train.py
+    deps:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 02fb1907169cb516948dc315db2f3c24
+      size: 60364
+    - path: model/train.py
+      hash: md5
+      md5: 37aec68887c1a5ae9ad285b1cd48d2dc
+      size: 7227
+    params:
+      params.yaml:
+        training:
+          test_size: 0.2
+          random_state: 42
+          random_forest:
+            n_estimators: 100
+            class_weight: balanced
+          logistic_regression:
+            max_iter: 1000
+            class_weight: balanced
+    outs:
+    - path: model/saved_model.pkl
+      hash: md5
+      md5: ee1ceec2ee758d38abd1124758485e7b
+      size: 211641
+    - path: model/training_metadata.json
+      hash: md5
+      md5: fd70157b6ac07c81092e72c613fd1a0f
+      size: 691
+  evaluate:
+    cmd: python scripts/dvc_metrics.py
+    deps:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 02fb1907169cb516948dc315db2f3c24
+      size: 60364
+    - path: model/evaluate.py
+      hash: md5
+      md5: c83596787e8e2dec88f63429e5c9a653
+      size: 4570
+    - path: model/saved_model.pkl
+      hash: md5
+      md5: ee1ceec2ee758d38abd1124758485e7b
+      size: 211641
+    - path: scripts/dvc_metrics.py
+      hash: md5
+      md5: 131e33f56ad98bb4692e22573d2e8373
+      size: 1102
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: deaa61f375e8895ac57e184c647325fa
+      size: 101

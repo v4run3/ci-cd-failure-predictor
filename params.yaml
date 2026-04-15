@@ -1,0 +1,27 @@
+# DVC parameters — referenced by dvc.yaml to trigger stage re-runs when changed.
+# Note: the current scripts use hardcoded defaults matching these values.
+# This file documents the hyperparameters and lets DVC track experiment changes.
+
+data_generation:
+  num_records: 1000
+  random_seed: 42
+  failure_rate_target: 0.25
+
+features:
+  target_column: failed
+  columns_to_drop:
+    - build_id
+    - commit_hash
+    - author
+    - log_snippet
+    - project_name
+
+training:
+  test_size: 0.2
+  random_state: 42
+  random_forest:
+    n_estimators: 100
+    class_weight: balanced
+  logistic_regression:
+    max_iter: 1000
+    class_weight: balanced

@@ -29,3 +29,6 @@ uvicorn>=0.23.0
 # Testing (required by FastAPI TestClient)
 httpx>=0.24.0
 pytest>=7.0.0
+
+# MLOps: data & model versioning + pipeline orchestration
+dvc>=3.0.0
